@@ -86,6 +86,7 @@
         <plugin.maven.assembly.version>2.6</plugin.maven.assembly.version>
         <plugin.maven.surefire.version>2.21.0</plugin.maven.surefire.version>
         <apollo.version>0.11.0-SNAPSHOT</apollo.version>
+        <cat-client.version>2.0.0</cat-client.version>
     </properties>
 
 
@@ -527,6 +528,12 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dianping.cat</groupId>
+                <artifactId>cat-client</artifactId>
+                <version>${cat-client.version}</version>
             </dependency>
 
         </dependencies>
