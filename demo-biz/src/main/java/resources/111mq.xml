@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:apollo="http://www.ctrip.com/schema/apollo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit
+       http://www.springframework.org/schema/rabbit/spring-rabbit-2.0.xsd
+       http://www.ctrip.com/schema/apollo http://www.ctrip.com/schema/apollo.xsd">
+
+    <apollo:config/>
+
+    <!--配置connection-factory，指定连接rabbit server参数 -->
+    <rabbit:connection-factory id="connectionFactory" username="${demo.spring.rabbitmq.username}"
+                               password="${demo.spring.rabbitmq.password}"
+                               host="${demo.spring.rabbitmq.host}"
+                               port="${demo.spring.rabbitmq.port}"/>
+
+    <!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成 -->
+    <rabbit:admin id="rabbitAdmin" connection-factory="connectionFactory"/>
+
+    <!--定义queue -->
+    <rabbit:queue name="${demo.to.demo.direct.queue.name}_${env}" durable="true" auto-delete="false" exclusive="false"
+                  declared-by="rabbitAdmin"/>
+
+    <!-- 定义direct exchange，绑定testDirect -->
+    <rabbit:direct-exchange name="${demo.direct.exchange.name}_${env}" durable="true" auto-delete="false"
+                            declared-by="rabbitAdmin">
+        <rabbit:bindings>
+            <rabbit:binding queue="${demo.to.demo.direct.queue.name}_${env}"
+                            key="${demo.to.demo.direct.queue.rk}_${env}"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--定义rabbit template用于数据的接收和发送 -->
+    <rabbit:template id="amqpTemplate"
+                     connection-factory="connectionFactory"
+                     confirm-callback="myMsgSendConfirmCallback"
+                     return-callback="mymsgSendReturnCallback"
+                     exchange="${demo.direct.exchange.name}_${env}"/>
+
+
+    <!-- 消息接收者 -->
+    <bean id="basicConsumer" name="basicConsumer" class="com.ddc.common.demo.jms.basic.consumer.BasicConsumer"></bean>
+
+    <!-- queue litener 观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象 -->
+    <rabbit:listener-container
+            connection-factory="connectionFactory">
+        <rabbit:listener queues="${demo.to.demo.direct.queue.name}_${env}" ref="basicConsumer"/>
+    </rabbit:listener-container>
+
+    <bean id="myMsgSendConfirmCallback" class="com.ddc.common.demo.jms.MsgSendConfirmCallback"></bean>
+
+    <bean id="mymsgSendReturnCallback" class="com.ddc.common.demo.jms.MsgSendReturnCallback"></bean>
+
+    <bean id="basicMessageProducer" class="com.ddc.common.demo.jms.basic.producer.BasicMessageProducer">
+        <property name="amqpTemplate" ref="amqpTemplate"/>
+        <property name="routingKey" value="${demo.to.demo.direct.queue.rk}_${env}"/>
+    </bean>
+
+</beans>

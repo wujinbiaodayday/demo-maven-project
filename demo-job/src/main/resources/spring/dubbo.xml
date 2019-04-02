@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用名 -->
+    <dubbo:application name="demo-dubbo-job"/>
+    <!-- 注册中心暴露服务地址 -->
+    <dubbo:registry check="false" address="${dubbo.registry.address}" timeout="30000"/>
+    <!-- 通过注解加载dubbo -->
+    <dubbo:annotation package="com.ddc.scm.demo"/>
+    <!-- 关闭所有服务的启动时检查：(没有提供者时报错) -->
+    <dubbo:consumer check="false"/>
+    <!-- dubbo协议,自动指定未使用的端口 -->
+    <dubbo:protocol name="dubbo" serialization="kryo" port="-1"/>
+    <!-- 关闭超时重连 -->
+    <dubbo:provider delay="-1" timeout="60000" retries="0"/>
+
+</beans>

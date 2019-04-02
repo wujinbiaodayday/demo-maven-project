@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF" monitorInterval="600">
+    <Properties>
+        <Property name="ORDER_LOG_HOME">/srv/app/logs</Property>
+        <property name="INFO_FILE_NAME">info_demo_service</property>
+        <property name="ERROR_FILE_NAME">error_demo_service</property>
+        <property name="ALL_FILE_NAME">all_demo_service</property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} -  %l %msg%n"/>
+        </Console>
+
+        <RollingRandomAccessFile name="INFO" fileName="${ORDER_LOG_HOME}/${INFO_FILE_NAME}.log" filePattern="${ORDER_LOG_HOME}/${INFO_FILE_NAME}_%d{yyyy-MM-dd}_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <ELKLayout>
+                <KeyValuePair key="busniess" value="order"/>
+                <KeyValuePair key="module" value="order-service"/>
+                <KeyValuePair key="logData" value="false"/>
+            </ELKLayout>
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="200MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <!--错误信息记录-->
+        <RollingRandomAccessFile name="ERROR" fileName="${ORDER_LOG_HOME}/${ERROR_FILE_NAME}.log" filePattern="${ORDER_LOG_HOME}/${ERROR_FILE_NAME}_%d{yyyy-MM-dd}_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <ELKLayout>
+                <KeyValuePair key="busniess" value="order"/>
+                <KeyValuePair key="module" value="order-service"/>
+                <KeyValuePair key="logData" value="false"/>
+            </ELKLayout>
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="200MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="ALL" fileName="${ORDER_LOG_HOME}/${ALL_FILE_NAME}.log" filePattern="${ORDER_LOG_HOME}/${ALL_FILE_NAME}_%d{yyyy-MM-dd}_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <ELKLayout>
+                <KeyValuePair key="busniess" value="order"/>
+                <KeyValuePair key="module" value="order-service"/>
+                <KeyValuePair key="logData" value="false"/>
+            </ELKLayout>
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="300MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <Async name="infoAsync">
+            <AppenderRef ref="INFO"/>
+        </Async>
+
+        <Async name="errorAsync">
+            <AppenderRef ref="ERROR"/>
+        </Async>
+
+        <Async name="allAsync">
+            <AppenderRef ref="ALL"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </Logger>
+
+        <logger name="log4j.logger.com.ibatis" level="trace" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.org.mybatis" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.java.sql" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.java.sql.Connection" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.java.sql.Statement" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.java.sql.PreparedStatement" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="log4j.logger.java.sql.PreparedStatement" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </logger>
+
+        <logger name="org.springframework.boot.*" level="debug" additivity="false">
+            <Appender-Ref ref="Console"/>
+        </logger>
+
+        <Root level="debug">
+            <Appender-Ref ref="Console"/>
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+            <AppenderRef ref="allAsync"/>
+        </Root>
+    </Loggers>
+</Configuration>
+

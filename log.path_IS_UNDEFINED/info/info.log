@@ -1,0 +1,64 @@
+[2018-12-28 10:54:02.231] [main] [INFO] com.ctrip.framework.foundation.internals.provider.DefaultApplicationProvider:96 x:() - App ID is set to demo-dubbo-service by app.id property from /META-INF/app.properties
+[2018-12-28 10:54:02.238] [main] [WARN] com.ctrip.framework.foundation.internals.provider.DefaultServerProvider:40 x:() - /opt/settings/server.properties does not exist or is not readable.
+[2018-12-28 10:54:02.239] [main] [WARN] com.ctrip.framework.foundation.internals.provider.DefaultServerProvider:131 x:() - Environment is set to null. Because it is not available in either (1) JVM system property 'env', (2) OS env variable 'ENV' nor (3) property 'env' from the properties InputStream.
+[2018-12-28 10:54:02.244] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:02.251] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:02.276] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:02.277] [main] [WARN] com.ctrip.framework.apollo.internals.AbstractConfigRepository:27 x:() - Sync config failed, will retry. Repository class com.ctrip.framework.apollo.internals.RemoteConfigRepository, reason: env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:02.771] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:02.772] [main] [WARN] com.ctrip.framework.apollo.internals.LocalFileConfigRepository:159 x:() - Sync config from upstream repository class com.ctrip.framework.apollo.internals.RemoteConfigRepository failed, reason: env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:03.273] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:03.274] [main] [WARN] com.ctrip.framework.apollo.internals.LocalFileConfigRepository:159 x:() - Sync config from upstream repository class com.ctrip.framework.apollo.internals.RemoteConfigRepository failed, reason: env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:03.275] [main] [WARN] com.ctrip.framework.apollo.internals.AbstractConfigRepository:27 x:() - Sync config failed, will retry. Repository class com.ctrip.framework.apollo.internals.LocalFileConfigRepository, reason: Load config from local config failed! [Cause: Cannot read from local cache file /Users/wu/pms/demo-parent/demo-dubbo-service/target/classes/config-cache/demo-dubbo-service+default+application.properties]
+[2018-12-28 10:54:03.773] [main] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:03.773] [main] [WARN] com.ctrip.framework.apollo.internals.LocalFileConfigRepository:159 x:() - Sync config from upstream repository class com.ctrip.framework.apollo.internals.RemoteConfigRepository failed, reason: env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:03.774] [main] [WARN] com.ctrip.framework.apollo.internals.DefaultConfig:58 x:() - Init Apollo Local Config failed - namespace: application, reason: Load config from local config failed! [Cause: Cannot read from local cache file /Users/wu/pms/demo-parent/demo-dubbo-service/target/classes/config-cache/demo-dubbo-service+default+application.properties].
+[2018-12-28 10:54:03.779] [main] [INFO] com.ddc.common.demo.DemoDubboServiceApplication:50 x:() - Starting DemoDubboServiceApplication on DDC-paces-MacBook-Pro.local with PID 1344 (/Users/wu/pms/demo-parent/demo-dubbo-service/target/classes started by wu in /Users/wu/pms/demo-parent)
+[2018-12-28 10:54:03.780] [main] [WARN] com.ctrip.framework.apollo.internals.DefaultConfig:92 x:() - Could not load config for namespace application from Apollo, please check whether the configs are released in Apollo! Return default value now!
+[2018-12-28 10:54:03.780] [main] [INFO] com.ddc.common.demo.DemoDubboServiceApplication:659 x:() - No active profile set, falling back to default profiles: default
+[2018-12-28 10:54:03.898] [main] [INFO] org.springframework.context.annotation.AnnotationConfigApplicationContext:590 x:() - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@48f5bde6: startup date [Fri Dec 28 10:54:03 CST 2018]; root of context hierarchy
+[2018-12-28 10:54:04.284] [Apollo-RemoteConfigLongPollService-1] [ERROR] com.ctrip.framework.apollo.util.ConfigUtil:109 x:() - env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:04.295] [Apollo-RemoteConfigLongPollService-1] [WARN] com.ctrip.framework.apollo.internals.RemoteConfigLongPollService:193 x:() - Long polling failed, will retry in 1 seconds. appId: demo-dubbo-service, cluster: default, namespaces: application, long polling url: null, reason: env is not set, please make sure it is set in /opt/settings/server.properties!
+[2018-12-28 10:54:04.633] [main] [WARN] org.springframework.context.annotation.AnnotationConfigApplicationContext:558 x:() - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to process import candidates for configuration class [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration]; nested exception is java.io.FileNotFoundException: class path resource [com/alibaba/druid/spring/boot/autoconfigure/stat/DruidSpringAopConfiguration.class] cannot be opened because it does not exist
+[2018-12-28 10:54:04.642] [main] [INFO] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:101 x:() - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[2018-12-28 10:54:04.659] [main] [ERROR] org.springframework.boot.SpringApplication:842 x:() - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to process import candidates for configuration class [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration]; nested exception is java.io.FileNotFoundException: class path resource [com/alibaba/druid/spring/boot/autoconfigure/stat/DruidSpringAopConfiguration.class] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:648)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:303)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:245)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:638)
+	at org.springframework.context.annotation.ConfigurationClassParser.lambda$processDeferredImportSelectors$2(ConfigurationClassParser.java:567)
+	at org.springframework.context.annotation.ConfigurationClassParser$$Lambda$124/1239132915.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.springframework.context.annotation.ConfigurationClassParser.processDeferredImportSelectors(ConfigurationClassParser.java:563)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:188)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:316)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:233)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:273)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:93)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:694)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:532)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.ddc.common.demo.DemoDubboServiceApplication.main(DemoDubboServiceApplication.java:29)
+Caused by: java.io.FileNotFoundException: class path resource [com/alibaba/druid/spring/boot/autoconfigure/stat/DruidSpringAopConfiguration.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:180)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:51)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:88)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:75)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:734)
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getRelated(ConfigurationClassParser.java:1010)
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getAnnotationAttributes(ConfigurationClassParser.java:991)
+	at org.springframework.context.annotation.ConfigurationClassParser.collectImports(ConfigurationClassParser.java:539)
+	at org.springframework.context.annotation.ConfigurationClassParser.getImports(ConfigurationClassParser.java:512)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:303)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:245)
+	at org.springframework.context.annotation.ConfigurationClassParser.processImports(ConfigurationClassParser.java:638)
+	... 20 common frames omitted

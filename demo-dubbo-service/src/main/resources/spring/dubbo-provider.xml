@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- applcation info -->
+    <dubbo:application name="demo-dubbo-service"/>
+
+    <!-- registrys-->
+    <dubbo:registry id="zkregistry" protocol="zookeeper" address="${dubbo.provider.zk.default.address}" check="false"
+                    client="curator"/>
+
+    <!--protocols-->
+    <dubbo:protocol id="dubbo" name="dubbo" port="${dubbo.provider.protocol.default.port}" serialization="hessian2"
+                    dispatcher="message" threadpool="fixed" threads="1000" heartbeat="60000"/>
+
+    <!-- providers -->
+    <dubbo:provider id="defaultProvider" application="demo-dubbo-service" registry="zkregistry" protocol="dubbo"
+                    proxy="javassist" cluster="failover" retries="2" loadbalance="random"
+                    timeout="20000" version="${dubbo.provider.common.version}"/>
+
+    <!--<dubbo:provider id="jvmProvider" protocol="injvm" registry="zkregistry"/>-->
+
+    <!-- server providers -->
+    <dubbo:service id="basicServiceExport" interface="com.ddc.common.demo.api.basic.basicservice.BasicService"
+                   ref="basicService" provider="defaultProvider" version="${dubbo.provider.common.version}"/>
+
+    <dubbo:service id="demoSystemServiceExport" interface="com.ddc.common.demo.api.system.DemoSystemService"
+                   ref="demoSystemService" provider="defaultProvider" version="${dubbo.provider.common.version}"/>
+
+
+</beans>
